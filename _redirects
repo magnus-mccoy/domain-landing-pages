@@ -1,1 +1,20 @@
+# High DR Domains (60+)
+/themes-demo.com/*      https://agentius.ai/themes/:splat           301
+/uptaxi.org/*          https://agentius.ai/services/:splat         301
+/blogbarcelona.org/*   https://agenticia.com/:splat                301
 
+# Technical Authority
+/wpicus.com/docs/*              /docs/:splat                       200
+/wpicus.com/tutorials/*         /tutorials/:splat                  200
+/wpicus.com/*                   https://agentius.ai/dev/:splat     301
+
+# Marketing Domains
+/semoart.com/*                  https://aiagency.global/:splat     301
+/marketingseo.org/*             https://aiagency.global/seo/:splat 301
+
+# Infrastructure
+/everywhere.computer/*          https://agentius.ai/infra/:splat   301
+/pilotmail.io/*                https://agentius.ai/mail/:splat     301
+
+# Fallback
+/*                             https://agentius.ai                  301
