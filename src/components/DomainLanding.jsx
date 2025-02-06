@@ -1,5 +1,4 @@
 import React from 'react';
-import { Card, CardHeader, CardContent } from '@/components/ui/card';
 
 const DomainLanding = () => {
   const [domain, setDomain] = React.useState('');
@@ -9,15 +8,9 @@ const DomainLanding = () => {
   }, []);
 
   return (
-    <div className="container mx-auto p-4">
-      <Card>
-        <CardHeader>
-          <h1 className="text-2xl font-bold">{domain}</h1>
-        </CardHeader>
-        <CardContent>
-          <div>Domain Landing Page</div>
-        </CardContent>
-      </Card>
+    <div className="container p-4">
+      <h1 className="text-2xl font-bold">{domain}</h1>
+      <div>Domain Landing Page</div>
     </div>
   );
 };
