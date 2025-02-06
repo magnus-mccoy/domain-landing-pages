@@ -1,4 +1,5 @@
 name: Deploy Landing Pages
+
 on:
   push:
     branches: [ main ]
@@ -6,28 +7,26 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
     
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v2
     
-    - name: Setup Node
-      uses: actions/setup-node@v3
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v1
       with:
-        node-version: '18'
-        
-    - name: Install Dependencies
-      run: npm ci
-        
-    - name: Build
-      run: npm run build
-        
-    - name: Deploy to Cloudflare Pages
-      uses: cloudflare/pages-action@v1
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v2
+      with:
+        push: true
+        tags: ghcr.io/${{ github.repository }}/landing-pages:latest
+    
+    - name: Deploy to Cloudflare
+      uses: cloudflare/wrangler-action@v3
       with:
         apiToken: ${{ secrets.CF_API_TOKEN }}
-        accountId: ${{ secrets.CF_ACCOUNT_ID }}
-        projectName: domain-landing-pages
-        directory: dist
+      env:
+        CF_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
