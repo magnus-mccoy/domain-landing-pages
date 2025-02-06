@@ -10,9 +10,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     rollupOptions: {
-      input: {
-        main: resolve(__dirname, 'index.html')
-      }
+      input: resolve(__dirname, 'index.html')
     }
   }
 })
