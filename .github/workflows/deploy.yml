@@ -24,6 +24,9 @@ jobs:
         push: true
         tags: ghcr.io/${{ github.repository }}/landing-pages:latest
     
+    - name: Install Wrangler
+      run: npm install -g wrangler@latest
+    
     - name: Deploy to Cloudflare
       uses: cloudflare/wrangler-action@v3
       with:
